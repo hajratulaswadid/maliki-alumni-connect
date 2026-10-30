@@ -1,0 +1,2 @@
+# Maliki Alumni Connect
+# Proyek ini menggunakan modul bawaan Python (standard library)
