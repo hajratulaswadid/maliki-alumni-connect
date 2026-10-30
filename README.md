@@ -1,3 +1,13 @@
+---
+title: Maliki Alumni Connect
+emoji: 🎓
+colorFrom: green
+colorTo: blue
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # MALIKI ALUMNI CONNECT
 ## Aplikasi Jejaring dan Kolaborasi Ekonomi Alumni UIN Maulana Malik Ibrahim Malang
 
