@@ -3,12 +3,12 @@ title Push Maliki Alumni Connect ke GitHub
 cd /d "%~dp0"
 
 echo =====================================================================
-echo   UPLOAD PROYEK KE GITHUB (hajratulaswad/maliki-alumni-connect)
+echo   UPLOAD PROYEK KE GITHUB (hajratulaswadid/maliki-alumni-connect)
 echo =====================================================================
 echo.
 
 git remote remove origin 2>nul
-git remote add origin https://github.com/hajratulaswad/maliki-alumni-connect.git
+git remote add origin https://github.com/hajratulaswadid/maliki-alumni-connect.git
 git branch -M main
 
 echo Mengirim commit ke GitHub...
@@ -18,7 +18,7 @@ if %ERRORLEVEL% equ 0 (
     echo.
     echo =====================================================================
     echo  [BERHASIL] Repository berhasil diupload ke GitHub!
-    echo  Link Repo: https://github.com/hajratulaswad/maliki-alumni-connect
+    echo  Link Repo: https://github.com/hajratulaswadid/maliki-alumni-connect
     echo =====================================================================
 ) else (
     echo.
