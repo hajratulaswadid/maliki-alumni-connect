@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a5c36"/>
+      <stop offset="100%" stop-color="#1b8a53"/>
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="48" fill="url(#g)" stroke="#c89b3c" stroke-width="4"/>
+  <circle cx="50" cy="50" r="38" fill="none" stroke="#f1d279" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <!-- Islamic geometric star/lantern motif -->
+  <path d="M50 18 L58 35 L76 35 L62 46 L67 63 L50 52 L33 63 L38 46 L24 35 L42 35 Z" fill="#c89b3c"/>
+  <circle cx="50" cy="50" r="10" fill="#ffffff"/>
+  <circle cx="50" cy="50" r="6" fill="#0a5c36"/>
+  <!-- Graduation cap base -->
+  <path d="M30 72 L50 82 L70 72 L50 64 Z" fill="#ffffff" opacity="0.9"/>
+</svg>

@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: maliki-alumni-connect
+    env: python
+    buildCommand: ""
+    startCommand: "python app.py --demo"
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 10000
+      - key: MALIKI_DEMO
+        value: "1"

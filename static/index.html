@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MALIKI ALUMNI CONNECT — Jejaring & Kolaborasi Ekonomi Alumni UIN Malang</title>
+  <link rel="icon" type="image/png" href="/logo-ika-alumni.png">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- Demo Mode Banner -->
+  <div id="demoBanner" class="demo-banner" style="display: none;">
+    <span class="badge">SIMULASI DEMO</span>
+    <span>Aplikasi berjalan dalam mode demonstrasi dengan data contoh. Jangan masukkan data pribadi riil.</span>
+    <label for="demoQuickSwitch" style="margin-left: 8px;">Ganti Akun Demo:</label>
+    <select id="demoQuickSwitch">
+      <option value="">-- Pilih Akun --</option>
+      <option value="admin@demo.local">Pengurus / Admin</option>
+      <option value="alumni@demo.local">Alumni (Ahmad Fauzi / Owner Usaha)</option>
+      <option value="mitra@demo.local">Alumni Mitra (Siti Aminah / Halal Hub)</option>
+      <option value="mentor@demo.local">Mentor (Dr. Irfan Hakim)</option>
+    </select>
+  </div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-top">
+      <a href="#" class="brand-wrapper" onclick="switchTab('home'); return false;">
+        <img src="/logo-ika-alumni.png" alt="Logo IKA Alumni UIN Maulana Malik Ibrahim Malang" class="brand-logo">
+        <div class="brand-title">
+          <h1>MALIKI ALUMNI CONNECT</h1>
+          <p>Portal Jejaring &amp; Kolaborasi Ekonomi Alumni UIN Maulana Malik Ibrahim Malang</p>
+        </div>
+      </a>
+      <div class="auth-nav">
+        <div id="userInfo" style="display: none;" class="user-badge">
+          <span id="userBadgeRole" class="badge badge-info">Alumni</span>
+          <span id="userName">Nama Pengguna</span>
+          <button class="btn btn-light btn-sm" onclick="openProfileModal()">Profil</button>
+          <button class="btn btn-outline-primary btn-sm" onclick="handleLogout()">Keluar</button>
+        </div>
+        <div id="guestNav">
+          <button class="btn btn-primary btn-sm" onclick="openAuthModal('login')">Masuk</button>
+          <button class="btn btn-secondary btn-sm" onclick="openAuthModal('register')">Daftar Alumni</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs-wrapper">
+      <ul class="nav-tabs">
+        <li><button id="btnTab-home" class="active" onclick="switchTab('home')">Beranda</button></li>
+        <li><button id="btnTab-alumni" onclick="switchTab('alumni')">Direktori Alumni</button></li>
+        <li><button id="btnTab-businesses" onclick="switchTab('businesses')">Jejaring Usaha</button></li>
+        <li><button id="btnTab-products" onclick="switchTab('products')">Katalog Produk/Jasa</button></li>
+        <li><button id="btnTab-mentors" onclick="switchTab('mentors')">Profesi &amp; Mentor</button></li>
+        <li><button id="btnTab-classes" onclick="switchTab('classes')">Entrepreneur Academy</button></li>
+        <li><button id="btnTab-incubation" onclick="switchTab('incubation')">Inkubasi Bisnis</button></li>
+        <li><button id="btnTab-leads" onclick="switchTab('leads')">Business Leads</button></li>
+        <li><button id="btnTab-pks" onclick="switchTab('pks')">Perjanjian (PKS)</button></li>
+        <li><button id="btnTab-dashboard" onclick="switchTab('dashboard')">Dashboard KPI 2027</button></li>
+        <li><button id="btnTab-pdp" onclick="switchTab('pdp')">Hak Data (PDP)</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="container">
+
+    <!-- TAB 1: BERANDA -->
+    <section id="tab-home" class="tab-pane active">
+      <div class="hero-card">
+        <div class="hero-content">
+          <h2>Sinergi Potensi Ekonomi Alumni Maliki</h2>
+          <p>Mewujudkan ekosistem wirausaha dan karier alumni UIN Maulana Malik Ibrahim Malang yang solid, berdaya saing global, berintegritas, dan berkah.</p>
+          <div class="hero-buttons">
+            <button class="btn btn-secondary" onclick="switchTab('alumni')">Jelajahi Direktori Alumni</button>
+            <button class="btn btn-light" onclick="switchTab('businesses')">Katalog Usaha &amp; Produk</button>
+            <button class="btn btn-outline-primary" style="color: #ffffff; border-color: #ffffff;" onclick="switchTab('classes')">Ikuti Kelas Pelatihan</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overview Cards -->
+      <div class="grid-cols-4">
+        <div class="card" onclick="switchTab('alumni')" style="cursor: pointer;">
+          <div class="card-header">
+            <span class="card-title">P1. Direktori Alumni</span>
+            <span class="badge badge-info">Jejaring</span>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Pencarian alumni lintas fakultas, profesi, kota domisili, dan portofolio profesional terverifikasi.</p>
+        </div>
+
+        <div class="card" onclick="switchTab('businesses')" style="cursor: pointer;">
+          <div class="card-header">
+            <span class="card-title">P4. Digital Business Hub</span>
+            <span class="badge badge-success">Bisnis</span>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Etalase produk barang &amp; jasa alumni terkurasi untuk memperluas jangkauan pasar dan rantai pasok.</p>
+        </div>
+
+        <div class="card" onclick="switchTab('classes')" style="cursor: pointer;">
+          <div class="card-header">
+            <span class="card-title">P2. Academy &amp; Skill</span>
+            <span class="badge badge-warning">Pelatihan</span>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Peningkatan kapabilitas bisnis, sertifikasi halal, dan workshop teknis wirausaha alumni.</p>
+        </div>
+
+        <div class="card" onclick="switchTab('pks')" style="cursor: pointer;">
+          <div class="card-header">
+            <span class="card-title">P6. Business Matching</span>
+            <span class="badge badge-neutral">Kolaborasi</span>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Fasilitasi penyusunan draf PKS resmi, penugasan mentor bisnis, dan pesan kemitraan.</p>
+        </div>
+      </div>
+
+      <!-- Pengumuman & Agenda -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Pengumuman &amp; Agenda Organisasi</span>
+          <button id="btnNewAnnouncement" class="btn btn-primary btn-sm" style="display: none;" onclick="openAnnouncementModal()">+ Buat Pengumuman</button>
+        </div>
+        <div id="announcementList">
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Memuat informasi terkini...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: DIREKTORI ALUMNI -->
+    <section id="tab-alumni" class="tab-pane">
+      <div class="card-header">
+        <div>
+          <h2>Direktori Alumni Terverifikasi</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Temukan rekan seangkatan, mitra usaha, atau tenaga ahli alumni UIN Malang.</p>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="openAuthModal('register')">+ Gabung Direktori</button>
+      </div>
+
+      <div class="filter-bar">
+        <input type="text" id="filterAlumniQ" placeholder="Cari nama, profesi, atau perusahaan..." style="flex: 2;">
+        <select id="filterAlumniFaculty" style="flex: 1;">
+          <option value="">Semua Fakultas</option>
+          <option value="Ekonomi">Ekonomi</option>
+          <option value="Teknik">Teknik</option>
+          <option value="Ushuluddin">Ushuluddin</option>
+          <option value="Sains dan Teknologi">Sains dan Teknologi</option>
+          <option value="Syariah">Syariah</option>
+          <option value="Tarbiyah dan Keguruan">Ilmu Tarbiyah dan Keguruan</option>
+          <option value="Humaniora">Humaniora</option>
+          <option value="Psikologi">Psikologi</option>
+          <option value="Kedokteran dan Ilmu Kesehatan">Kedokteran &amp; Ilmu Kesehatan</option>
+          <option value="Pascasarjana">Pascasarjana</option>
+        </select>
+        <input type="text" id="filterAlumniCity" placeholder="Kota / Provinsi..." style="flex: 1;">
+        <button class="btn btn-primary" onclick="loadAlumni()">Filter</button>
+      </div>
+
+      <div id="alumniGrid" class="grid-cols-3">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- TAB 3: JEJARING USAHA -->
+    <section id="tab-businesses" class="tab-pane">
+      <div class="card-header">
+        <div>
+          <h2>Jejaring Usaha Alumni (Business Network)</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Profil perusahaan, startup, dan UMKM yang dirintis oleh alumni.</p>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="openBusinessModal()">+ Daftarkan Usaha Anda</button>
+      </div>
+
+      <div class="filter-bar">
+        <input type="text" id="filterBizQ" placeholder="Cari nama usaha atau deskripsi..." style="flex: 2;">
+        <select id="filterBizSector" style="flex: 1;">
+          <option value="">Semua Sektor</option>
+          <option value="Teknologi & Digital">Teknologi &amp; Digital</option>
+          <option value="Makanan & Minuman Halal">Makanan &amp; Minuman Halal</option>
+          <option value="Jasa Konsultasi & Hukum">Jasa Konsultasi &amp; Hukum</option>
+          <option value="Pendidikan & Pelatihan">Pendidikan &amp; Pelatihan</option>
+          <option value="Kesehatan & Farmasi">Kesehatan &amp; Farmasi</option>
+          <option value="Konveksi & Fashion">Konveksi &amp; Fashion</option>
+          <option value="Agribisnis & Peternakan">Agribisnis &amp; Peternakan</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
+        <input type="text" id="filterBizCity" placeholder="Kota..." style="flex: 1;">
+        <button class="btn btn-primary" onclick="loadBusinesses()">Cari</button>
+      </div>
+
+      <div id="businessesGrid" class="grid-cols-3">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- TAB 4: KATALOG PRODUK / JASA -->
+    <section id="tab-products" class="tab-pane">
+      <div class="card-header">
+        <div>
+          <h2>Katalog Produk &amp; Jasa Terkurasi</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Produk berkualitas dari para alumni yang siap dipesan atau dikolaborasikan.</p>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="openProductModal()">+ Tambah Produk / Jasa</button>
+      </div>
+
+      <div class="filter-bar">
+        <input type="text" id="filterProdQ" placeholder="Cari produk / jasa..." style="flex: 2;">
+        <select id="filterProdCat" style="flex: 1;">
+          <option value="">Semua Kategori</option>
+          <option value="Software & SaaS">Software &amp; SaaS</option>
+          <option value="Jasa IT">Jasa IT</option>
+          <option value="Kuliner & Kopi">Kuliner &amp; Kopi</option>
+          <option value="Jasa Sertifikasi">Jasa Sertifikasi</option>
+          <option value="Produk Fisik / Retail">Produk Fisik / Retail</option>
+          <option value="Jasa Profesional">Jasa Profesional</option>
+        </select>
+        <button class="btn btn-primary" onclick="loadProducts()">Cari</button>
+      </div>
+
+      <div id="productsGrid" class="grid-cols-3">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- TAB 5: PROFESI & MENTOR -->
+    <section id="tab-mentors" class="tab-pane">
+      <div class="card-header">
+        <div>
+          <h2>Direktori Pakar &amp; Mentor Bisnis Alumni</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Alumni berpengalaman yang siap memberikan bimbingan dan mentorship.</p>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="openMentorModal()">Ajukan Diri Sebagai Mentor</button>
+      </div>
+
+      <div id="mentorsGrid" class="grid-cols-2">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- TAB 6: KELAS ALUMNI (ENTREPRENEUR ACADEMY) -->
+    <section id="tab-classes" class="tab-pane">
+      <div class="card-header">
+        <div>
+          <h2>Entrepreneur Academy: Pelatihan &amp; Workshop</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Program peningkatan kompetensi bisnis dan teknologi bagi alumni.</p>
+        </div>
+        <button id="btnCreateClass" class="btn btn-primary btn-sm" style="display: none;" onclick="openCreateClassModal()">+ Buat Kelas Baru</button>
+      </div>
+
+      <div id="classesGrid" class="grid-cols-2">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- TAB 7: INKUBASI BISNIS -->
+    <section id="tab-incubation" class="tab-pane">
+      <div class="card-header">
+        <div>
+          <h2>Inkubator Bisnis &amp; Startup Alumni (P3)</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Program pembinaan intensif tenant, validasi pasar, dan pencatatan jurnal pendampingan.</p>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="openIncubationApplyModal()">+ Ajukan Ide / Tenant Inkubasi</button>
+      </div>
+
+      <div id="incubationList">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- TAB 8: BUSINESS MATCHING & LEADS -->
+    <section id="tab-leads" class="tab-pane">
+      <div class="card-header">
+        <div>
+          <h2>Business Matching: Penjajakan Peluang &amp; Pesan</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Kirim pesan penawaran kerja sama, komunikasi privat, dan konversi ke draf PKS.</p>
+        </div>
+      </div>
+
+      <div id="leadsList">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- TAB 9: PERJANJIAN KERJA SAMA (PKS) -->
+    <section id="tab-pks" class="tab-pane">
+      <div class="card-header">
+        <div>
+          <h2>Perjanjian Kerja Sama (PKS) Antaralumni</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Fasilitasi penyusunan draf, persetujuan para pihak, review pengurus, cetak/PDF browser, dan audit arsip.</p>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="openPksModal()">+ Susun Draf PKS Baru</button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>No. / Judul Kerja Sama</th>
+              <th>Pihak I (Pengusul)</th>
+              <th>Pihak II (Mitra)</th>
+              <th>Masa Berlaku</th>
+              <th>Status</th>
+              <th>Arsip Fisik</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="pksTableBody">
+            <!-- Rendered via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 10: DASHBOARD & MONITORING KPI 2027 -->
+    <section id="tab-dashboard" class="tab-pane">
+      <div class="card-header">
+        <div>
+          <h2>Dashboard Capaian KPI Program Kerja 2027</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Pantauan realisasi indikator kinerja utama Divisi Ekonomi Digital &amp; Kewirausahaan.</p>
+        </div>
+        <button class="btn btn-light btn-sm" onclick="loadKpiData()">Segarkan Data</button>
+      </div>
+
+      <!-- 8 Metric Cards based on 2027 Strategic Plan Targets -->
+      <div class="grid-cols-4" id="kpiCardsContainer">
+        <!-- Rendered via JS -->
+      </div>
+
+      <!-- Admin Management Queues (Shown for admin) -->
+      <div id="adminQueuesSection" style="display: none; margin-top: 24px;">
+        <h3 style="color: var(--primary); margin-bottom: 12px;">Antrean Kurasi &amp; Verifikasi Pengurus</h3>
+        <div class="grid-cols-2">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Verifikasi Calon Anggota Alumni</span>
+              <span id="pendingAlumniCount" class="badge badge-warning">0</span>
+            </div>
+            <div id="pendingAlumniList" style="max-height: 250px; overflow-y: auto;">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Kurasi Usaha &amp; Produk Baru</span>
+              <span id="pendingCurationsCount" class="badge badge-warning">0</span>
+            </div>
+            <div id="pendingCurationsList" style="max-height: 250px; overflow-y: auto;">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 11: HAK DATA PRIBADI (PDP) -->
+    <section id="tab-pdp" class="tab-pane">
+      <div class="card-header">
+        <div>
+          <h2>Hak Perlindungan Data Pribadi (UU PDP)</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Transparansi dan permohonan hak subjek data alumni: akses, koreksi, atau penarikan izin.</p>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="openPdpModal()">+ Ajukan Permohonan Data</button>
+      </div>
+
+      <div class="card" style="margin-bottom: 20px;">
+        <h3 style="font-size: 1rem; color: var(--primary); margin-bottom: 8px;">Pemberitahuan Tata Kelola &amp; Perlindungan Data</h3>
+        <p style="font-size: 0.88rem; line-height: 1.6; color: var(--text-muted);">
+          Platform Maliki Alumni Connect memproses data keanggotaan, riwayat pendidikan, dan profil bisnis berdasarkan persetujuan tertulis eksplisit yang Anda berikan saat mendaftar. Data publik hanya mencakup informasi yang Anda izinkan tampil dalam direktori alumni atau katalog bisnis. Setiap permohonan akses berkas, koreksi nama/kontak, penarikan izin publikasi, maupun penghapusan data akan diverifikasi secara administratif oleh sekretariat IKA UIN Malang.
+        </p>
+      </div>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Pemohon</th>
+              <th>Jenis Permohonan</th>
+              <th>Keterangan Permintaan</th>
+              <th>Status</th>
+              <th>Tanggapan Administrator</th>
+              <th>Tanggal</th>
+            </tr>
+          </thead>
+          <tbody id="pdpTableBody">
+            <!-- Rendered via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div>
+        <strong>MALIKI ALUMNI CONNECT</strong> — Inisiatif Divisi Ekonomi Digital &amp; Kewirausahaan IKA UIN Malang.<br>
+        <span style="font-size: 0.78rem; opacity: 0.8;">Berdasarkan Kerangka Strategis 2026–2031 &amp; Rencana Aksi 2027.</span>
+      </div>
+      <div class="footer-links">
+        <a href="#" onclick="switchTab('pdp'); return false;">Kebijakan Data Pribadi</a>
+        <a href="#" onclick="switchTab('dashboard'); return false;">Laporan KPI</a>
+        <a href="https://uin-malang.ac.id" target="_blank" rel="noopener">Portal UIN Malang</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODALS ================= -->
+
+  <!-- Modal Auth (Login & Register) -->
+  <div id="modalAuth" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="authModalTitle">Masuk ke Akun Anda</h3>
+        <button class="btn-close" onclick="closeModal('modalAuth')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Toggle Tabs inside modal -->
+        <div style="display: flex; gap: 10px; margin-bottom: 18px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+          <button id="authTabLoginBtn" class="btn btn-light btn-sm" onclick="showAuthSubTab('login')">Masuk</button>
+          <button id="authTabRegisterBtn" class="btn btn-light btn-sm" onclick="showAuthSubTab('register')">Pendaftaran Alumni Baru</button>
+        </div>
+
+        <!-- Form Login -->
+        <form id="formLogin" onsubmit="submitLogin(event)">
+          <div class="form-group">
+            <label>Alamat Email</label>
+            <input type="email" id="loginEmail" required placeholder="nama@email.com">
+          </div>
+          <div class="form-group">
+            <label>Kata Sandi</label>
+            <input type="password" id="loginPassword" required placeholder="Minimal 8 karakter">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Masuk Sekarang</button>
+        </form>
+
+        <!-- Form Register -->
+        <form id="formRegister" style="display: none;" onsubmit="submitRegister(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nama Lengkap (dengan gelar) *</label>
+              <input type="text" id="regName" required placeholder="cth. Ahmad Fauzi, S.E.">
+            </div>
+            <div class="form-group">
+              <label>NIM (jika ingat)</label>
+              <input type="text" id="regNim" placeholder="cth. 15510023">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Fakultas *</label>
+              <select id="regFaculty" required>
+                <option value="Ekonomi">Ekonomi</option>
+                <option value="Teknik">Teknik</option>
+                <option value="Ushuluddin">Ushuluddin</option>
+                <option value="Sains dan Teknologi">Sains dan Teknologi</option>
+                <option value="Syariah">Syariah</option>
+                <option value="Tarbiyah dan Keguruan">Ilmu Tarbiyah &amp; Keguruan</option>
+                <option value="Humaniora">Humaniora</option>
+                <option value="Psikologi">Psikologi</option>
+                <option value="Kedokteran dan Ilmu Kesehatan">Kedokteran &amp; Ilmu Kesehatan</option>
+                <option value="Pascasarjana">Pascasarjana</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Tahun Kelulusan *</label>
+              <input type="number" id="regGradYear" required min="1970" max="2027" placeholder="cth. 2019">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Profesi / Jabatan</label>
+              <input type="text" id="regProfession" placeholder="cth. Founder / CEO / Software Engineer">
+            </div>
+            <div class="form-group">
+              <label>Nama Perusahaan / Usaha</label>
+              <input type="text" id="regCompany" placeholder="cth. Maliki Tech Solusindo">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Kota Domisili</label>
+              <input type="text" id="regCity" placeholder="cth. Kota Malang">
+            </div>
+            <div class="form-group">
+              <label>Nomor WhatsApp</label>
+              <input type="text" id="regPhone" placeholder="cth. 08123456789">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" id="regEmail" required placeholder="email.alumni@domain.com">
+          </div>
+          <div class="form-group">
+            <label>Kata Sandi Akun *</label>
+            <input type="password" id="regPassword" required minlength="8" placeholder="Minimal 8 karakter unik">
+          </div>
+          <div class="form-group">
+            <label>Tautan Profil LinkedIn / Portofolio</label>
+            <input type="url" id="regLinkedin" placeholder="https://linkedin.com/in/username">
+          </div>
+          <div class="form-group">
+            <label>Biodata Singkat / Keahlian</label>
+            <textarea id="regBio" rows="2" placeholder="Tuliskan ringkasan pengalaman dan minat kolaborasi bisnis..."></textarea>
+          </div>
+          <div class="form-group" style="display: flex; align-items: flex-start; gap: 8px;">
+            <input type="checkbox" id="regConsent" required checked style="width: auto; margin-top: 4px;">
+            <label for="regConsent" style="font-size: 0.82rem; font-weight: normal; color: var(--text-muted);">
+              Saya menyetujui pemrosesan data pribadi untuk keperluan verifikasi jejaring alumni dan direktori IKA UIN Maulana Malik Ibrahim Malang sesuai UU PDP.
+            </label>
+          </div>
+          <button type="submit" class="btn btn-secondary" style="width: 100%;">Daftar Sebagai Alumni</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Edit Profil -->
+  <div id="modalProfile" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Perbarui Profil Alumni</h3>
+        <button class="btn-close" onclick="closeModal('modalProfile')">&times;</button>
+      </div>
+      <form id="formProfile" onsubmit="submitProfileUpdate(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Nama Lengkap</label>
+            <input type="text" id="profName" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Profesi</label>
+              <input type="text" id="profProfession">
+            </div>
+            <div class="form-group">
+              <label>Perusahaan / Institusi</label>
+              <input type="text" id="profCompany">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Provinsi</label>
+              <input type="text" id="profProvince">
+            </div>
+            <div class="form-group">
+              <label>Kota</label>
+              <input type="text" id="profCity">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>No. Kontak WhatsApp</label>
+              <input type="text" id="profPhone">
+            </div>
+            <div class="form-group">
+              <label>URL LinkedIn</label>
+              <input type="url" id="profLinkedin">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Biodata / Ringkasan Portofolio</label>
+            <textarea id="profBio" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" onclick="closeModal('modalProfile')">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Daftarkan Usaha -->
+  <div id="modalBusiness" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Daftarkan Profil Usaha Alumni</h3>
+        <button class="btn-close" onclick="closeModal('modalBusiness')">&times;</button>
+      </div>
+      <form id="formBusiness" onsubmit="submitBusiness(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Nama Usaha / Perusahaan *</label>
+            <input type="text" id="bizName" required placeholder="cth. CV Maliki Agro Sejahtera">
+          </div>
+          <div class="form-group">
+            <label>Sektor Bisnis *</label>
+            <select id="bizSector" required>
+              <option value="Teknologi & Digital">Teknologi &amp; Digital</option>
+              <option value="Makanan & Minuman Halal">Makanan &amp; Minuman Halal</option>
+              <option value="Jasa Konsultasi & Hukum">Jasa Konsultasi &amp; Hukum</option>
+              <option value="Pendidikan & Pelatihan">Pendidikan &amp; Pelatihan</option>
+              <option value="Kesehatan & Farmasi">Kesehatan &amp; Farmasi</option>
+              <option value="Konveksi & Fashion">Konveksi &amp; Fashion</option>
+              <option value="Agribisnis & Peternakan">Agribisnis &amp; Peternakan</option>
+              <option value="Lainnya">Lainnya</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Deskripsi Usaha &amp; Layanan Utama</label>
+            <textarea id="bizDescription" rows="3" placeholder="Jelaskan spesialisasi, kapasitas produksi, atau keunggulan usaha..."></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Provinsi</label>
+              <input type="text" id="bizProvince" placeholder="Jawa Timur">
+            </div>
+            <div class="form-group">
+              <label>Kota / Kabupaten</label>
+              <input type="text" id="bizCity" placeholder="Kota Malang">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Alamat Lengkap Kantor / Workshop</label>
+            <input type="text" id="bizAddress" placeholder="Jl. ...">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Website Resmi</label>
+              <input type="url" id="bizWebsite" placeholder="https://namausaha.com">
+            </div>
+            <div class="form-group">
+              <label>WhatsApp Bisnis</label>
+              <input type="text" id="bizWa" placeholder="08xxxxxxxxxx">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" onclick="closeModal('modalBusiness')">Batal</button>
+          <button type="submit" class="btn btn-primary">Ajukan Kurasi Usaha</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Tambah Produk/Jasa -->
+  <div id="modalProduct" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Tambah Produk / Jasa ke Katalog</h3>
+        <button class="btn-close" onclick="closeModal('modalProduct')">&times;</button>
+      </div>
+      <form id="formProduct" onsubmit="submitProduct(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Pilih Unit Usaha Anda *</label>
+            <select id="prodBusinessId" required>
+              <!-- Populated via JS -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Nama Produk / Jasa *</label>
+            <input type="text" id="prodName" required placeholder="cth. Aplikasi SI-Pesantren / Kopi Robusta 250gr">
+          </div>
+          <div class="form-group">
+            <label>Kategori Produk *</label>
+            <select id="prodCategory" required>
+              <option value="Software & SaaS">Software &amp; SaaS</option>
+              <option value="Jasa IT">Jasa IT</option>
+              <option value="Kuliner & Kopi">Kuliner &amp; Kopi</option>
+              <option value="Jasa Sertifikasi">Jasa Sertifikasi</option>
+              <option value="Produk Fisik / Retail">Produk Fisik / Retail</option>
+              <option value="Jasa Profesional">Jasa Profesional</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Estimasi Harga (Rp)</label>
+            <input type="number" id="prodPrice" min="0" placeholder="0 jika fleksibel / per penawaran">
+          </div>
+          <div class="form-group">
+            <label>Deskripsi Produk / Spesifikasi</label>
+            <textarea id="prodDescription" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>URL Foto Produk (opsional)</label>
+            <input type="url" id="prodPhotoUrl" placeholder="https://images.unsplash.com/...">
+          </div>
+          <div class="form-group">
+            <label>Tautan Rujukan / Dokumen Brosur (opsional)</label>
+            <input type="url" id="prodRefLink" placeholder="https://link-katalog-atau-toko.com">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" onclick="closeModal('modalProduct')">Batal</button>
+          <button type="submit" class="btn btn-primary">Ajukan Kurasi Produk</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Ajukan Mentor -->
+  <div id="modalMentor" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Pengajuan Sebagai Mentor Alumni</h3>
+        <button class="btn-close" onclick="closeModal('modalMentor')">&times;</button>
+      </div>
+      <form id="formMentor" onsubmit="submitMentorApply(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Bidang Keahlian Utama *</label>
+            <input type="text" id="mentorExpertise" required placeholder="cth. Scale-up Startup, Legalitas Halal, Ekspor Mamin">
+          </div>
+          <div class="form-group">
+            <label>Lama Pengalaman Profesional (Tahun) *</label>
+            <input type="number" id="mentorYears" min="1" max="50" value="5" required>
+          </div>
+          <div class="form-group">
+            <label>Portofolio / Pengalaman Pendampingan</label>
+            <textarea id="mentorBio" rows="3" placeholder="Sebutkan pengalaman mendampingi bisnis, sertifikasi profesi, atau capaian..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Tautan Website / Profil Lengkap</label>
+            <input type="url" id="mentorPortfolioUrl" placeholder="https://profil-mentor.com">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" onclick="closeModal('modalMentor')">Batal</button>
+          <button type="submit" class="btn btn-secondary">Kirim Pengajuan Mentor</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Buat Kelas Baru (Admin) -->
+  <div id="modalCreateClass" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Buat Kelas Pelatihan Baru (Pengurus)</h3>
+        <button class="btn-close" onclick="closeModal('modalCreateClass')">&times;</button>
+      </div>
+      <form id="formCreateClass" onsubmit="submitCreateClass(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Judul Kelas *</label>
+            <input type="text" id="classTitle" required placeholder="cth. Workshop Ekspor Produk UMKM ke Timur Tengah">
+          </div>
+          <div class="form-group">
+            <label>Nama Pemateri / Instruktur *</label>
+            <input type="text" id="classInstructor" required placeholder="cth. Dr. Ahmad / Tim Praktisi Ekspor">
+          </div>
+          <div class="form-group">
+            <label>Jadwal Pelaksanaan</label>
+            <input type="text" id="classSchedule" placeholder="cth. Sabtu, 15 November 2027, 09.00 - 12.00 WIB">
+          </div>
+          <div class="form-group">
+            <label>Lokasi / Platform</label>
+            <input type="text" id="classLocation" placeholder="cth. Zoom Webinar & Gedung IKA UIN Malang">
+          </div>
+          <div class="form-group">
+            <label>Kuota Peserta Maksimal</label>
+            <input type="number" id="classQuota" value="50" min="5" max="500">
+          </div>
+          <div class="form-group">
+            <label>Deskripsi &amp; Silabus Kelas</label>
+            <textarea id="classDescription" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" onclick="closeModal('modalCreateClass')">Batal</button>
+          <button type="submit" class="btn btn-primary">Terbitkan Kelas</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Pengajuan Tenant Inkubasi -->
+  <div id="modalIncubationApply" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Pengajuan Tenant Inkubator Bisnis (P3)</h3>
+        <button class="btn-close" onclick="closeModal('modalIncubationApply')">&times;</button>
+      </div>
+      <form id="formIncubationApply" onsubmit="submitIncubationApply(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Unit Usaha yang Diajukan (jika sudah ada)</label>
+            <select id="incubationBizId">
+              <option value="">-- Usaha Baru / Belum Berbadan Hukum --</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Deskripsi Ide / Problem &amp; Solusi Bisnis *</label>
+            <textarea id="incubationIdea" rows="3" required placeholder="Jelaskan produk, target pelanggan, dan solusi yang Anda tawarkan..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Tahapan Bisnis Saat Ini *</label>
+            <select id="incubationStage" required>
+              <option value="ideation">Ideation (Baru berupa konsep/ide)</option>
+              <option value="mvp">MVP (Prototipe produk sudah jadi)</option>
+              <option value="traction">Traction (Sudah ada omset &amp; pelanggan awal)</option>
+              <option value="scaling">Scaling (Siap ekspansi pasar &amp; permodalan)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Kebutuhan Pendampingan Khusus</label>
+            <textarea id="incubationNeed" rows="2" placeholder="cth. Kebutuhan legalitas PT/CV, sertifikasi halal, validasi model langganan B2B, akses investor..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" onclick="closeModal('modalIncubationApply')">Batal</button>
+          <button type="submit" class="btn btn-primary">Kirim Berkas Inkubasi</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Jurnal Inkubasi -->
+  <div id="modalJournals" class="modal-overlay">
+    <div class="modal-box modal-lg">
+      <div class="modal-header">
+        <h3 id="journalModalTitle">Jurnal Pendampingan Tenant</h3>
+        <button class="btn-close" onclick="closeModal('modalJournals')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="journalEntries" style="max-height: 350px; overflow-y: auto; margin-bottom: 20px; display: flex; flex-direction: column; gap: 12px;">
+          <!-- Populated via JS -->
+        </div>
+
+        <form id="formAddJournal" onsubmit="submitAddJournal(event)">
+          <input type="hidden" id="journalTenantId">
+          <div class="form-group">
+            <label>Tipe Catatan</label>
+            <select id="journalNoteType">
+              <option value="progress">Progres Mingguan Tenant</option>
+              <option value="mentor_feedback">Arahan / Masukan Mentor</option>
+              <option value="milestone">Pencapaian Milestone Penting</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Catatan / Ringkasan Sesi Mentoring</label>
+            <textarea id="journalNotes" rows="3" required placeholder="Tuliskan perkembangan validasi, kendala, atau rencana tindak lanjut..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-sm">+ Tambah Catatan ke Jurnal</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Kirim Business Lead -->
+  <div id="modalSendLead" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Kirim Peluang Bisnis / Business Lead</h3>
+        <button class="btn-close" onclick="closeModal('modalSendLead')">&times;</button>
+      </div>
+      <form id="formSendLead" onsubmit="submitSendLead(event)">
+        <input type="hidden" id="leadTargetBizId">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Tujuan Usaha</label>
+            <input type="text" id="leadTargetBizName" readonly style="background-color: #f1f5f9;">
+          </div>
+          <div class="form-group">
+            <label>Perihal / Judul Peluang *</label>
+            <input type="text" id="leadTitle" required placeholder="cth. Permintaan Penawaran Pengadaan Software / Suplai Bahan">
+          </div>
+          <div class="form-group">
+            <label>Isi Pesan / Kebutuhan Kerja Sama *</label>
+            <textarea id="leadMessage" rows="4" required placeholder="Jelaskan kebutuhan, volume pengadaan, atau rencana kolaborasi bisnis..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" onclick="closeModal('modalSendLead')">Batal</button>
+          <button type="submit" class="btn btn-primary">Kirim Lead</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Chat Leads -->
+  <div id="modalChatLead" class="modal-overlay">
+    <div class="modal-box modal-lg">
+      <div class="modal-header">
+        <h3 id="chatLeadTitle">Percakapan Business Lead</h3>
+        <button class="btn-close" onclick="closeModal('modalChatLead')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 12px;">
+        <div class="chat-container">
+          <div class="chat-messages" id="chatMessagesArea">
+            <!-- Populated via JS -->
+          </div>
+          <form class="chat-input-bar" onsubmit="submitSendChatMessage(event)">
+            <input type="hidden" id="chatLeadId">
+            <input type="text" id="chatInputText" placeholder="Ketik balasan pesan..." required style="flex: 1;">
+            <button type="submit" class="btn btn-primary">Kirim</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Susun Draf PKS -->
+  <div id="modalPks" class="modal-overlay">
+    <div class="modal-box modal-lg">
+      <div class="modal-header">
+        <h3>Susun Rancangan Draf Perjanjian Kerja Sama (PKS)</h3>
+        <button class="btn-close" onclick="closeModal('modalPks')">&times;</button>
+      </div>
+      <form id="formPks" onsubmit="submitPksDraft(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Pilih Rekan Alumni Sebagai Mitra (Pihak Kedua) *</label>
+            <select id="pksPartnerId" required>
+              <!-- Populated via JS -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Judul Kesepakatan PKS *</label>
+            <input type="text" id="pksTitle" required placeholder="cth. Perjanjian Kerja Sama Distribusi Produk Pangan Halal">
+          </div>
+          <div class="form-group">
+            <label>Ruang Lingkup Kolaborasi *</label>
+            <input type="text" id="pksScope" required placeholder="cth. Pengembangan Perangkat Lunak & Pemasaran Bersama">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Tanggal Mulai Berlaku</label>
+              <input type="date" id="pksStartDate">
+            </div>
+            <div class="form-group">
+              <label>Tanggal Berakhir</label>
+              <input type="date" id="pksEndDate">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Klausul Rancangan Perjanjian (Isi Draf) *</label>
+            <textarea id="pksContent" rows="8" required style="font-family: monospace; font-size: 0.85rem;" placeholder="Pasal 1 - Maksud dan Tujuan...&#10;Pasal 2 - Hak dan Kewajiban Para Pihak...&#10;Pasal 3 - Kerahasiaan Informasi..."></textarea>
+          </div>
+          <div style="background-color: var(--secondary-light); border-left: 4px solid var(--secondary); padding: 10px; font-size: 0.8rem; color: #78350f;">
+            <strong>Catatan Hukum:</strong> Sistem ini memfasilitasi formulasi rancangan draf PKS internal dan review administratif pengurus IKA. Penandatanganan final yang mengikat secara sah dilakukan secara terpisah sesuai ketentuan perundang-undangan (tanda tangan basah atau sertifikat elektronik resmi).
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" onclick="closeModal('modalPks')">Batal</button>
+          <button type="submit" class="btn btn-primary">Ajukan Draf ke Mitra</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Detail & Print PKS -->
+  <div id="modalViewPks" class="modal-overlay">
+    <div class="modal-box modal-lg">
+      <div class="modal-header">
+        <h3>Pratinjau Dokumen Perjanjian Kerja Sama (PKS)</h3>
+        <button class="btn-close" onclick="closeModal('modalViewPks')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="pks-document-box" id="pksPrintArea">
+          <div class="pks-doc-header">
+            <h2>NOTA KESEPAHAMAN / PERJANJIAN KERJA SAMA</h2>
+            <p id="printPksDocRef" style="font-size: 0.9rem; font-style: italic;">Nomor Registrasi: DRAF/PKS/MALIKI/...</p>
+          </div>
+          <div id="printPksContent" class="pks-doc-content">
+            <!-- Dynamic Content -->
+          </div>
+          <div class="pks-signatures">
+            <div class="pks-signature-box">
+              <p>PIHAK PERTAMA (PENGUSUL)</p>
+              <div class="pks-signature-line" id="printPksProposer">Nama Pengusul</div>
+            </div>
+            <div class="pks-signature-box">
+              <p>PIHAK KEDUA (MITRA)</p>
+              <div class="pks-signature-line" id="printPksPartner">Nama Mitra</div>
+            </div>
+          </div>
+          <div style="margin-top: 30px; font-size: 0.8rem; text-align: center; color: #475569; border-top: 1px dotted #ccc; padding-top: 8px;">
+            Terdaftar di Portal Maliki Alumni Connect — Pengurus IKA UIN Maulana Malik Ibrahim Malang
+          </div>
+        </div>
+
+        <!-- Audit Trail Log -->
+        <div style="margin-top: 24px; border-top: 1px solid var(--border); padding-top: 14px;">
+          <h4 style="font-size: 0.95rem; color: var(--primary); margin-bottom: 8px;">Audit Trail &amp; Riwayat Tindakan PKS</h4>
+          <div id="pksAuditLogContainer" style="font-size: 0.8rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 4px;">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="window.print()">Cetak / Simpan PDF</button>
+        <button type="button" class="btn btn-light" onclick="closeModal('modalViewPks')">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Permohonan Hak Data Pribadi (PDP) -->
+  <div id="modalPdp" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Permohonan Hak Data Pribadi</h3>
+        <button class="btn-close" onclick="closeModal('modalPdp')">&times;</button>
+      </div>
+      <form id="formPdp" onsubmit="submitPdpRequest(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Jenis Hak yang Diajukan *</label>
+            <select id="pdpType" required>
+              <option value="access">Akses / Salinan Data Profil</option>
+              <option value="correction">Koreksi / Pembaruan Data Keliru</option>
+              <option value="withdraw_consent">Penarikan Persetujuan Publikasi Direktori</option>
+              <option value="deletion">Penghapusan / Pemutusan Akses Akun</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Rincian Keterangan Permohonan *</label>
+            <textarea id="pdpDetails" rows="4" required placeholder="Jelaskan data spesifik yang ingin diakses, dikoreksi, atau ditarik izinnya..."></textarea>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">
+            Catatan: Penghapusan atau penarikan data diproses secara administratif oleh pengurus organisasi setelah verifikasi identitas, dan tidak langsung menghapus database secara instan demi integritas arsip kegiatan.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" onclick="closeModal('modalPdp')">Batal</button>
+          <button type="submit" class="btn btn-primary">Kirim Permohonan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Pengumuman Baru (Admin) -->
+  <div id="modalAnnouncement" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Buat Informasi / Pengumuman Baru</h3>
+        <button class="btn-close" onclick="closeModal('modalAnnouncement')">&times;</button>
+      </div>
+      <form id="formAnnouncement" onsubmit="submitAnnouncement(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Kategori</label>
+            <select id="annCategory">
+              <option value="info">Informasi Umum</option>
+              <option value="event">Agenda / Acara</option>
+              <option value="pelatihan">Pengumuman Pelatihan</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Judul Pengumuman *</label>
+            <input type="text" id="annTitle" required placeholder="cth. Sosialisasi Expo Kewirausahaan Alumni 2027">
+          </div>
+          <div class="form-group">
+            <label>Isi Konten *</label>
+            <textarea id="annContent" rows="4" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" onclick="closeModal('modalAnnouncement')">Batal</button>
+          <button type="submit" class="btn btn-primary">Terbitkan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
