@@ -1,6 +1,7 @@
 import os
 import shutil
 import sys
+import urllib.parse
 from pathlib import Path
 
 # Add project root to sys.path
@@ -36,5 +37,34 @@ try:
 except Exception as e:
     print(f"DB Init error: {e}")
 
+
 class handler(app.MalikiRequestHandler):
-    pass
+    def _fix_path(self):
+        parsed = urllib.parse.urlparse(self.path)
+        qs = urllib.parse.parse_qs(parsed.query)
+        if "__route__" in qs:
+            route = qs.pop("__route__")[0]
+            new_query = urllib.parse.urlencode(qs, doseq=True)
+            self.path = route + ("?" + new_query if new_query else "")
+        elif self.path in ("/api/index.py", "/api/index", "/api", "/api/"):
+            self.path = "/"
+
+    def do_GET(self):
+        self._fix_path()
+        return super().do_GET()
+
+    def do_POST(self):
+        self._fix_path()
+        return super().do_POST()
+
+    def do_PUT(self):
+        self._fix_path()
+        return super().do_PUT()
+
+    def do_DELETE(self):
+        self._fix_path()
+        return super().do_DELETE()
+
+    def do_OPTIONS(self):
+        self._fix_path()
+        return super().do_OPTIONS()
